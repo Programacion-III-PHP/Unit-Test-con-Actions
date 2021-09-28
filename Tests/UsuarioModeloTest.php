@@ -1,6 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
-require '../modelos/UsuarioModelo.class.php';
+require 'modelos/UsuarioModelo.class.php';
 
 final class UsuarioModeloTests extends TestCase{
     public function testAutenticacionCorrecta(): void{
