@@ -17,4 +17,4 @@ Run Test:
   image: shippingdocker/php-composer
   stage: Test 
   script:
-    - ./vendor/bin/phpunit Test
+    - ./vendor/bin/phpunit Tests
