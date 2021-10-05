@@ -6,8 +6,8 @@
         public $autenticado;
 
         public function Autenticar(){
-            if ($nombre === "usuario1" && $password === "1234")
-                $autenticado = true;
+            if ($this -> nombre === "usuario1" && $this -> password === "1234")
+                $this -> autenticado = true;
             else 
                 throw new Exception("Auth failed");               
         }
