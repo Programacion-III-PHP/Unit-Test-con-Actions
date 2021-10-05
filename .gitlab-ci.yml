@@ -1,0 +1,24 @@
+stages:
+  - Validate
+  - Test
+
+before_script:
+  - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+  - php composer-setup.php
+  - mv composer.phar /bin/composer
+  - chmod +x /bin/composer
+  - composer install
+
+Validate Classes:
+  image: php:7.4-apache
+  stage: Validate
+  script:
+    - php -l modelos/UsuarioModelo.class.php
+    - php -l index.php
+
+
+Run Test:
+  image: php:7.4-apache
+  stage: Test 
+  script:
+    - ./vendor/bin/phpunit Test/
