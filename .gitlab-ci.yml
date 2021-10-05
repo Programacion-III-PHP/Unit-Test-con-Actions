@@ -3,15 +3,10 @@ stages:
   - Test
 
 before_script:
-  - apt-get update && apt-get install git -y
-  - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-  - php composer-setup.php
-  - mv composer.phar /bin/composer
-  - chmod +x /bin/composer
   - composer install
 
 Validate Classes:
-  image: php:7.4-apache
+  image: shippingdocker/php-composer
   stage: Validate
   script:
     - php -l modelos/UsuarioModelo.class.php
@@ -19,7 +14,7 @@ Validate Classes:
 
 
 Run Test:
-  image: php:7.4-apache
+  image: shippingdocker/php-composer
   stage: Test 
   script:
-    - ./vendor/bin/phpunit Test/
+    - ./vendor/bin/phpunit Test
