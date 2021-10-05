@@ -3,6 +3,7 @@ stages:
   - Test
 
 before_script:
+  - apt-get update && apt-get install git -y
   - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
   - php composer-setup.php
   - mv composer.phar /bin/composer
