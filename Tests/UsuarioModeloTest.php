@@ -29,9 +29,16 @@ final class UsuarioModeloTests extends TestCase{
             $this->assertTrue(true);
         }
     }  
-    public function testListar(): void{
+    public function testInstanciar(): void{
         $u = new UsuarioModelo();
         $this -> assertTrue($u instanceof  UsuarioModelo);
-       
     }      
+
+    public function testListar(): void{
+        $u = new UsuarioModelo();
+        $this -> assertNotNull($u -> Listar());
+        $this -> assertTrue(is_array($u -> Listar()));
+        $this -> assertEquals("1",$u -> Listar()['id']);
+        $this -> assertEquals("pepito",$u -> Listar()['nombre']);
+    }
 }
