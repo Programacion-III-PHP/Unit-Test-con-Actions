@@ -1,0 +1,39 @@
+name: EjemploActions
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+
+  CheckSyntax:
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Checkear sintaxis de modelo
+        run: php -l modelos/UsuarioModelo.class.php
+
+  CheckVarDump:
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Checkear si hay var_dump
+        run: grep -q var_dump modelos/UsuarioModelo.class.php && exit 1 || true
+
+      - name: Checkear si hay print_r
+        run: grep -q print_r modelos/UsuarioModelo.class.php && exit 1 || true
+        
+  RunUnitTests:
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Instalar PHPUnit con Composer
+        run: composer install
+      
+      - name: Ejecutar pruebas unitarias
+        run: ./vendor/bin/phpunit Tests/UsuarioModeloTest.php
+        
