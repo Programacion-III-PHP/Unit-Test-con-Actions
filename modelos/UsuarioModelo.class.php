@@ -9,7 +9,7 @@
             if ($this -> nombre === "usuario1" && $this -> password === "1234")
                 $this -> autenticado = true;
             else 
-                throw new Exception("Auth failed")              
+                throw new Exception("Auth failed");            
         }
 
         public function listar(){
